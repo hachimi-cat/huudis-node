@@ -11,8 +11,11 @@
  */
 
 export { HuudisClient } from './client.js';
+export { GeneratedApi } from './api.generated.js';
 export { verifyAccessToken, HuudisAuthError } from './auth.js';
 export { verifyWebhookSignature } from './webhooks.js';
+export { signRequest, accessKeyFetch, clientCredentialsFetch } from './signing.js';
+export type { AccessKeyCredentials, ClientCredentials } from './signing.js';
 export type { VerifyOptions } from './webhooks.js';
 export * from './types.js';
 export type { HuudisResources } from './resources.js';
