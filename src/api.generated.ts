@@ -651,7 +651,7 @@ export class GeneratedApi {
   }
 
   /** Impersonate an end user (POST /api/v1/ops/end-users/{id}/impersonate) */
-  opsEndUsersImpersonate(id: string, input?: { "durationSeconds"?: number; [field: string]: unknown }): Promise<unknown> {
+  opsEndUsersImpersonate(id: string, input?: { "durationSeconds"?: number; "reason"?: string; [field: string]: unknown }): Promise<unknown> {
     const all: Record<string, unknown> = { ...(input ?? {}) };
     const query: Record<string, unknown> = {};
     return this.call("POST", `/api/v1/ops/end-users/${encodeURIComponent(id)}/impersonate`, query, all);

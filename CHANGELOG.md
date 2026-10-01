@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+- `client.api.opsEndUsersImpersonate(id, { durationSeconds, reason })` takes `reason`, and `endUsers.impersonate(id, { reason })` now reaches the server (it was ignored): the audit log and the `huudis.ops.impersonation_*` webhook events carry it.
+- Huudis now delivers every webhook event its catalog lists (they were reserved): verify them with `verifyWebhookSignature` as before; see /docs/api/webhooks for who receives which.
+
 ## 0.6.0
 - A route read by id next to its list is named `get` + the list's name: `client.api.accountGetWebhookSubscriptions` (was `client.api.accountWebhookSubscriptions2`), `client.api.iamGetGroups` (was `client.api.iamGroups2`), `client.api.iamGetPolicies` (was `client.api.iamPolicies2`), `client.api.iamGetRoles` (was `client.api.iamRoles2`), `client.api.iamGetServiceAccounts` (was `client.api.iamServiceAccounts2`), `client.api.opsGetEndUsers` (was `client.api.opsEndUsers2`). Each old name stays as a deprecated alias.
 
