@@ -124,6 +124,11 @@ export class GeneratedApi {
     return this.call("POST", `/api/v1/account/email-change`, query, all);
   }
 
+  /** Get a webhook subscription (GET /api/v1/account/webhook-subscriptions/{id}) */
+  accountGetWebhookSubscriptions(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/account/webhook-subscriptions/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
   /** List linked accounts (GET /api/v1/account/linked-accounts) */
   accountLinkedAccounts(): Promise<unknown> {
     return this.call("GET", `/api/v1/account/linked-accounts`, {}, undefined);
@@ -218,11 +223,6 @@ export class GeneratedApi {
   /** List webhook subscriptions (GET /api/v1/account/webhook-subscriptions) */
   accountWebhookSubscriptions(): Promise<unknown> {
     return this.call("GET", `/api/v1/account/webhook-subscriptions`, {}, undefined);
-  }
-
-  /** Get a webhook subscription (GET /api/v1/account/webhook-subscriptions/{id}) */
-  accountWebhookSubscriptions2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/account/webhook-subscriptions/${encodeURIComponent(id)}`, {}, undefined);
   }
 
   /** List deliveries (GET /api/v1/account/webhook-subscriptions/{id}/deliveries) */
@@ -472,14 +472,29 @@ export class GeneratedApi {
     return this.call("DELETE", `/api/v1/iam/users/${encodeURIComponent(id)}`, {}, undefined);
   }
 
+  /** Get a group (GET /api/v1/iam/groups/{id}) */
+  iamGetGroups(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/iam/groups/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
+  /** Get a policy (GET /api/v1/iam/policies/{id}) */
+  iamGetPolicies(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/iam/policies/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
+  /** Get a role (GET /api/v1/iam/roles/{id}) */
+  iamGetRoles(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/iam/roles/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
+  /** Get a service account (GET /api/v1/iam/service-accounts/{id}) */
+  iamGetServiceAccounts(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/iam/service-accounts/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
   /** List groups (GET /api/v1/iam/groups) */
   iamGroups(): Promise<unknown> {
     return this.call("GET", `/api/v1/iam/groups`, {}, undefined);
-  }
-
-  /** Get a group (GET /api/v1/iam/groups/{id}) */
-  iamGroups2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/iam/groups/${encodeURIComponent(id)}`, {}, undefined);
   }
 
   /** List identity providers (GET /api/v1/iam/identity-providers) */
@@ -497,11 +512,6 @@ export class GeneratedApi {
     return this.call("GET", `/api/v1/iam/policies`, {}, undefined);
   }
 
-  /** Get a policy (GET /api/v1/iam/policies/{id}) */
-  iamPolicies2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/iam/policies/${encodeURIComponent(id)}`, {}, undefined);
-  }
-
   /** List policy attachments (GET /api/v1/iam/policy-attachments) */
   iamPolicyAttachments(input?: { "policyId"?: string; "principalType"?: "user" | "group" | "role" | "service_account"; "principalId"?: string }): Promise<unknown> {
     const all: Record<string, unknown> = { ...(input ?? {}) };
@@ -517,19 +527,9 @@ export class GeneratedApi {
     return this.call("GET", `/api/v1/iam/roles`, {}, undefined);
   }
 
-  /** Get a role (GET /api/v1/iam/roles/{id}) */
-  iamRoles2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/iam/roles/${encodeURIComponent(id)}`, {}, undefined);
-  }
-
   /** List service accounts (GET /api/v1/iam/service-accounts) */
   iamServiceAccounts(): Promise<unknown> {
     return this.call("GET", `/api/v1/iam/service-accounts`, {}, undefined);
-  }
-
-  /** Get a service account (GET /api/v1/iam/service-accounts/{id}) */
-  iamServiceAccounts2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/iam/service-accounts/${encodeURIComponent(id)}`, {}, undefined);
   }
 
   /** Update an identity provider (PATCH /api/v1/iam/identity-providers/{id}) */
@@ -650,11 +650,6 @@ export class GeneratedApi {
     return this.call("GET", `/api/v1/ops/end-users`, {}, undefined);
   }
 
-  /** Get an end user (GET /api/v1/ops/end-users/{id}) */
-  opsEndUsers2(id: string): Promise<unknown> {
-    return this.call("GET", `/api/v1/ops/end-users/${encodeURIComponent(id)}`, {}, undefined);
-  }
-
   /** Impersonate an end user (POST /api/v1/ops/end-users/{id}/impersonate) */
   opsEndUsersImpersonate(id: string, input?: { "durationSeconds"?: number; [field: string]: unknown }): Promise<unknown> {
     const all: Record<string, unknown> = { ...(input ?? {}) };
@@ -680,5 +675,40 @@ export class GeneratedApi {
   /** Verify email an end user (POST /api/v1/ops/end-users/{id}/verify-email) */
   opsEndUsersVerifyEmail(id: string): Promise<unknown> {
     return this.call("POST", `/api/v1/ops/end-users/${encodeURIComponent(id)}/verify-email`, {}, undefined);
+  }
+
+  /** Get an end user (GET /api/v1/ops/end-users/{id}) */
+  opsGetEndUsers(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/ops/end-users/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
+  /** @deprecated The old name of `accountGetWebhookSubscriptions` (GET /api/v1/account/webhook-subscriptions/{id}). */
+  accountWebhookSubscriptions2(...args: Parameters<GeneratedApi["accountGetWebhookSubscriptions"]>): Promise<unknown> {
+    return this.accountGetWebhookSubscriptions(...args);
+  }
+
+  /** @deprecated The old name of `iamGetGroups` (GET /api/v1/iam/groups/{id}). */
+  iamGroups2(...args: Parameters<GeneratedApi["iamGetGroups"]>): Promise<unknown> {
+    return this.iamGetGroups(...args);
+  }
+
+  /** @deprecated The old name of `iamGetPolicies` (GET /api/v1/iam/policies/{id}). */
+  iamPolicies2(...args: Parameters<GeneratedApi["iamGetPolicies"]>): Promise<unknown> {
+    return this.iamGetPolicies(...args);
+  }
+
+  /** @deprecated The old name of `iamGetRoles` (GET /api/v1/iam/roles/{id}). */
+  iamRoles2(...args: Parameters<GeneratedApi["iamGetRoles"]>): Promise<unknown> {
+    return this.iamGetRoles(...args);
+  }
+
+  /** @deprecated The old name of `iamGetServiceAccounts` (GET /api/v1/iam/service-accounts/{id}). */
+  iamServiceAccounts2(...args: Parameters<GeneratedApi["iamGetServiceAccounts"]>): Promise<unknown> {
+    return this.iamGetServiceAccounts(...args);
+  }
+
+  /** @deprecated The old name of `opsGetEndUsers` (GET /api/v1/ops/end-users/{id}). */
+  opsEndUsers2(...args: Parameters<GeneratedApi["opsGetEndUsers"]>): Promise<unknown> {
+    return this.opsGetEndUsers(...args);
   }
 }

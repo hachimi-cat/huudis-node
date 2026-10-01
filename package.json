@@ -1,6 +1,6 @@
 {
   "name": "@forjio/huudis-node",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Official Node.js SDK for Huudis \u2014 email/social/MFA, fine-grained authorization, webhook signature verification, and full admin API (IAM, workspaces, end-users, billing, webhook subscriptions). Powered by @forjio/sdk's device-flow auth + http-client.",
   "type": "module",
   "main": "./dist/index.cjs",
