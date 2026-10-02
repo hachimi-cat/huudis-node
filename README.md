@@ -112,8 +112,11 @@ const signedIn = await app.api.appUsers({ status: 'active' });
 ```
 
 With a `session`, the person's token is used and the key is not. Person-only routes
-(password, sessions, account deletion, adding members, …) refuse a key with
-`PERSON_ONLY`; see <https://huudis.com/docs/api/authentication>. `signRequest(...)` signs a
+(password, sessions, account deletion, creating keys, …) refuse a key with
+`PERSON_ONLY`. Members, invites, SSO identity providers and member password resets need
+the action named in the key's policy (no wildcard); owners are emailed an undo, or must
+approve first — the call returns `approvalRequired` and the same call runs once
+an owner approved it. See <https://huudis.com/docs/api/authentication>. `signRequest(...)` signs a
 request you build yourself.
 
 ## What's in the box

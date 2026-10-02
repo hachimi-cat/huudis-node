@@ -7,7 +7,7 @@ export interface ApigenTransport {
   apigenRequest(method: string, path: string, query: Record<string, unknown> | undefined, body: unknown): Promise<unknown>;
 }
 
-/** All 111 feature routes of the Huudis API. */
+/** All 118 feature routes of the Huudis API. */
 export class GeneratedApi {
   constructor(private readonly client: ApigenTransport) {}
 
@@ -477,6 +477,11 @@ export class GeneratedApi {
     return this.call("GET", `/api/v1/iam/groups/${encodeURIComponent(id)}`, {}, undefined);
   }
 
+  /** Get a key request (GET /api/v1/iam/key-requests/{id}) */
+  iamGetKeyRequests(id: string): Promise<unknown> {
+    return this.call("GET", `/api/v1/iam/key-requests/${encodeURIComponent(id)}`, {}, undefined);
+  }
+
   /** Get a policy (GET /api/v1/iam/policies/{id}) */
   iamGetPolicies(id: string): Promise<unknown> {
     return this.call("GET", `/api/v1/iam/policies/${encodeURIComponent(id)}`, {}, undefined);
@@ -505,6 +510,47 @@ export class GeneratedApi {
   /** List invites (GET /api/v1/iam/invites) */
   iamInvites(): Promise<unknown> {
     return this.call("GET", `/api/v1/iam/invites`, {}, undefined);
+  }
+
+  /** List key actions (GET /api/v1/iam/key-actions) */
+  iamKeyActions(input?: { "limit"?: unknown }): Promise<unknown> {
+    const all: Record<string, unknown> = { ...(input ?? {}) };
+    const query: Record<string, unknown> = {};
+    query["limit"] = all["limit"]; delete all["limit"];
+    return this.call("GET", `/api/v1/iam/key-actions`, query, undefined);
+  }
+
+  /** Undo a key action (POST /api/v1/iam/key-actions/{id}/undo) */
+  iamKeyActionsUndo(id: string, input?: { "revokeKey"?: boolean; [field: string]: unknown }): Promise<unknown> {
+    const all: Record<string, unknown> = { ...(input ?? {}) };
+    const query: Record<string, unknown> = {};
+    return this.call("POST", `/api/v1/iam/key-actions/${encodeURIComponent(id)}/undo`, query, all);
+  }
+
+  /** List key requests (GET /api/v1/iam/key-requests) */
+  iamKeyRequests(input?: { "limit"?: unknown; "status"?: unknown }): Promise<unknown> {
+    const all: Record<string, unknown> = { ...(input ?? {}) };
+    const query: Record<string, unknown> = {};
+    query["limit"] = all["limit"]; delete all["limit"];
+    query["status"] = all["status"]; delete all["status"];
+    return this.call("GET", `/api/v1/iam/key-requests`, query, undefined);
+  }
+
+  /** Approve a key request with the code from its challenge. (POST /api/v1/iam/key-requests/{id}/approve) */
+  iamKeyRequestsApprove(id: string, input: { "challengeToken": string; "code": string; [field: string]: unknown }): Promise<unknown> {
+    const all: Record<string, unknown> = { ...(input ?? {}) };
+    const query: Record<string, unknown> = {};
+    return this.call("POST", `/api/v1/iam/key-requests/${encodeURIComponent(id)}/approve`, query, all);
+  }
+
+  /** Start approving a key request: a second-factor challenge for the signed-in owner (an emailed code is sent when they have an email factor). (POST /api/v1/iam/key-requests/{id}/challenge) */
+  iamKeyRequestsChallenge(id: string): Promise<unknown> {
+    return this.call("POST", `/api/v1/iam/key-requests/${encodeURIComponent(id)}/challenge`, {}, undefined);
+  }
+
+  /** Deny a key request (POST /api/v1/iam/key-requests/{id}/deny) */
+  iamKeyRequestsDeny(id: string): Promise<unknown> {
+    return this.call("POST", `/api/v1/iam/key-requests/${encodeURIComponent(id)}/deny`, {}, undefined);
   }
 
   /** List policies (GET /api/v1/iam/policies) */
